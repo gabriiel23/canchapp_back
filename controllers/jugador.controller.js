@@ -18,7 +18,7 @@ exports.crearJugador = async (req, res) => {
     // Manejar la galería de imágenes
     let galeriaUrls = [];
     if (req.files && req.files.length > 0) {
-      galeriaUrls = req.files.map(file => `/uploads/${file.filename}`);
+      galeriaUrls = req.files.map(file => file.path); // Cloudinary URLs
     }
 
     // Verificar si el usuario existe
@@ -164,7 +164,7 @@ exports.agregarFotosGaleria = async (req, res) => {
 
     const nuevasFotos = req.files
       .slice(0, espacioDisponible)
-      .map(file => `/uploads/${file.filename}`);
+      .map(file => file.path); // Cloudinary URLs
 
     jugador.galeria = [...galeriaActual, ...nuevasFotos];
     await jugador.save();

@@ -7,7 +7,7 @@ const upload = require('../middlewares/upload'); // Importar Multer
 router.post('/jugadores', upload.array('galeria', 6), JugadorController.crearJugador);
 router.get('/jugadores', JugadorController.obtenerJugadores);
 router.get('/jugadores/:id', JugadorController.obtenerJugadorPorId);
-router.put('/jugadores/:id', JugadorController.actualizarJugador);
+router.put('/jugadores/:id', upload.none(), JugadorController.actualizarJugador);
 router.delete('/jugadores/:id', JugadorController.eliminarJugador);
 router.get('/jugadores/usuario/:usuarioId', JugadorController.obtenerJugadorPorUsuarioId);
 

@@ -13,7 +13,7 @@ const UsuarioController = {
       // Manejar el avatar si se subió un archivo
       let avatarUrl = null;
       if (req.file) {
-        avatarUrl = `/uploads/${req.file.filename}`;
+        avatarUrl = req.file.path; // Cloudinary URL
       }
 
       // Verificar si el email ya está en uso
@@ -195,7 +195,7 @@ const UsuarioController = {
 
       // Manejar el avatar si se subió un archivo
       if (req.file) {
-        actualizacion.avatar = `/uploads/${req.file.filename}`;
+        actualizacion.avatar = req.file.path; // Cloudinary URL
       }
 
       const usuarioActualizado = await Usuario.findByIdAndUpdate(
